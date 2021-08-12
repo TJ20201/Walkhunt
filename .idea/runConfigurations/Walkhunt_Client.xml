@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Walkhunt Client" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="io.github.tj20201.walkhunt.Main" />
+    <module name="Walkhunt.main" />
+    <option name="PROGRAM_PARAMETERS" value="client" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

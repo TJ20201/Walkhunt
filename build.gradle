@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+group 'io.github.tj20201.walkhunt'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+project.ext {
+    isdev = 1
+
+    git = org.ajoberstar.grgit.Grgit.open(file('.'))
+    //revision = git.head().id
+}
+
+task createProperties {
+    doLast {
+        def isdev = "isDev="+project.ext.isdev.toString()+"\n"
+        def devbuild = git.head().abbreviatedId
+        if (isdev) {
+            def version = "version=" + project.version.toString() + "\n"
+        } else {
+            def version = "version=" + project.version.toString() + "-$devbuild" +"\n"
+        }
+        def file = new File("$buildDir/resources/info.properties")
+        file.write(version+isdev)
+    }
+}
+
+classes {
+    dependsOn createProperties
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    classpath 'org.ajoberstar:grgit:1.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}
