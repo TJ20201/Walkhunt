@@ -1,3 +1,9 @@
+buildscript {
+    dependencies {
+        classpath 'org.ajoberstar:grgit:1.1.0'
+    }
+}
+
 plugins {
     id 'java'
 }
@@ -20,13 +26,14 @@ task createProperties {
     doLast {
         def isdev = "isDev="+project.ext.isdev.toString()+"\n"
         def devbuild = git.head().abbreviatedId
+        def version = "version="
         if (isdev) {
-            def version = "version=" + project.version.toString() + "\n"
+            version += project.version.toString() + "-" + devbuild
         } else {
-            def version = "version=" + project.version.toString() + "-$devbuild" +"\n"
+            version += project.version.toString()
         }
         def file = new File("$buildDir/resources/info.properties")
-        file.write(version+isdev)
+        file.write(version+'\n'+isdev)
     }
 }
 
@@ -37,7 +44,6 @@ classes {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    classpath 'org.ajoberstar:grgit:1.1.0'
 }
 
 test {
