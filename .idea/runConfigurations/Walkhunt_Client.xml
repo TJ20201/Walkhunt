@@ -1,5 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Walkhunt Client" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="16" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="io.github.tj20201.walkhunt.Main" />
     <module name="Walkhunt.main" />
     <option name="PROGRAM_PARAMETERS" value="client" />
